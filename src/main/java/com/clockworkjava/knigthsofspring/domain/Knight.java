@@ -43,17 +43,17 @@ public class Knight {
     public String toString() {
         return "Rycerz o imieniu " + name + " wiek: " + age + " zadanie: " + quest;
     }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(age);
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if(this == obj) return true;
-        if(obj == null || obj.getClass() != getClass()) return false;
-        Knight knight = (Knight) obj;
-        return knight.age == age;
-    }
+//
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(age);
+//    }
+//
+//    @Override
+//    public boolean equals(Object obj) {
+//        if(this == obj) return true;
+//        if(obj == null || obj.getClass() != getClass()) return false;
+//        Knight knight = (Knight) obj;
+//        return knight.age == age;
+//    }
 }
