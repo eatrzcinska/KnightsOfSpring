@@ -3,6 +3,7 @@ package com.clockworkjava.knigthsofspring.domain.repository;
 import com.clockworkjava.knigthsofspring.domain.Quest;
 import com.clockworkjava.knigthsofspring.utils.Ids;
 import jakarta.annotation.PostConstruct;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;
@@ -10,44 +11,8 @@ import java.util.*;
 @Repository
 public class QuestRepository {
 
-    //    Map<Integer, Quest> questMap = new HashMap<>();
-//
-//    public void createQuest(String description) {
-//        int id = Ids.generateNewId(questMap.keySet());
-//        Quest quest = new Quest(id, description);
-//        questMap.put(id, quest);
-//    }
-//
-//    public void deleteQuest(Quest quest) {
-//        questMap.remove(quest);
-//    }
-//
-//    public List<Quest> getAllQuests() {
-//        return new ArrayList(questMap.values());
-//    }
-//
-//    public void update(Quest quest) {
-//        questMap.put(quest.getId(), quest);
-//    }
-//
-//    public Quest getQuest(int id) {
-//        return questMap.get(id);
-//    }
-//
-//
-//    @PostConstruct
-//    public void getRandomQuest() { //TODO what for?
-//        List<String> descriptionList = new ArrayList<>();
-//        descriptionList.add("Kill the Dragon");
-//        descriptionList.add("Fight with the Enemy");
-//        descriptionList.add("Save the Queen");
-//        descriptionList.add("Hide the treasure");
-//
-//        Random randomNumber = new Random();
-//        String desc = descriptionList.get(randomNumber.nextInt(descriptionList.size()));
-//        createQuest(desc);
-//    }
     List<Quest> questList = new ArrayList<>();
+    final static Random randomNumber = new Random();
 
     public void createQuest(String description) {
         questList.add(new Quest(description));
@@ -72,6 +37,21 @@ public class QuestRepository {
         return "QuestRepository{" +
                 "questList=" + questList +
                 '}';
+    }
+
+    @Scheduled(fixedDelayString = "${questCreationDelay}")
+    //samo (fixedDelay =2000) znaczy ze czeka na zakonczenie dzialania tej metody i dopiero po zakonczeniu czeka 2s na wykonanie kolejny raz tej metody
+    // (fixedRate = 2000) te dwie sekundy są liczone od momentu uruchomienia tej metody czyli od inicjalizacji listy, zyli nie czeka na zakonczenie metdy ktora uruchamiamy co jakis czas
+   //(initialDelay = 4000)
+    public void getRandomQuest() { //TODO what for?
+        List<String> descriptionList = new ArrayList<>();
+        descriptionList.add("Kill the Dragon");
+        descriptionList.add("Fight with the Enemy");
+        descriptionList.add("Save the Queen");
+        descriptionList.add("Hide the treasure");
+
+        String desc = descriptionList.get(randomNumber.nextInt(descriptionList.size()));
+        createQuest(desc);
     }
 
 }
