@@ -27,6 +27,7 @@ public class Starter implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
+        knightRepository.build();
         questrepository.getRandomQuest();
         questrepository.getRandomQuest();
 

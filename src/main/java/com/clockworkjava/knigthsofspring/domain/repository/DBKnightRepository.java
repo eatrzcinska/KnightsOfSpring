@@ -2,12 +2,11 @@ package com.clockworkjava.knigthsofspring.domain.repository;
 
 import com.clockworkjava.knigthsofspring.domain.Knight;
 import jakarta.annotation.PostConstruct;
-import jdk.jshell.spi.ExecutionControl.*;
-import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 //@Repository rezygnujemy z dodania adnotacji w tym miejscu, robimy to w klasie Main config poprzez metodę tak żeby w
 // adnotacji Qualifier okreslic który bean jest potrzebny
@@ -24,20 +23,20 @@ public class DBKnightRepository implements KnightRepository {
     }
 
     @Override
-    public Collection<Knight> getAllKnights() throws NotImplementedException {
+    public Collection<Knight> getAllKnights() {
         System.out.println("Uzywam bazy danych");
-        throw new NotImplementedException("dd");
+        return null;
     }
 
     @Override
-    public void deleteKnight(String name) {
+    public void deleteKnight(Integer id) {
         System.out.println("Uzywam bazy danych");
     }
 
     @Override
-    public Knight getKnight(String knightName) throws NotImplementedException {
+    public Optional<Knight> getKnight(String knightName) {
         System.out.println("Uzywam bazy danych");
-        throw new NotImplementedException("dd");
+        return null;
     }
 
     @Override
@@ -50,5 +49,14 @@ public class DBKnightRepository implements KnightRepository {
     public String toString() {
         System.out.println("Uzywam bazy danych");
         return null;
+    }
+
+    @Override
+    public Knight getKnightByid(int id) {
+        return null;
+    }
+
+    @Override
+    public void addKnight(Knight knight) {
     }
 }
