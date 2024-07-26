@@ -1,6 +1,7 @@
 package com.clockworkjava.knigthsofspring.controllers;
 
 import com.clockworkjava.knigthsofspring.domain.Knight;
+import com.clockworkjava.knigthsofspring.domain.PlayerInfo;
 import com.clockworkjava.knigthsofspring.domain.Quest;
 import com.clockworkjava.knigthsofspring.service.KnightService;
 import com.clockworkjava.knigthsofspring.service.QuestService;
@@ -20,11 +21,13 @@ public class QuestController {
     KnightService knightService;
     @Autowired
     QuestService questService;
+    @Autowired
+    PlayerInfo playerInfo;
 
     @RequestMapping("/assignquest")
     public String assignQuest(@RequestParam("id") Integer id, Model model) {
         Knight knight = knightService.getKnight(id);
-        List <Quest> notStartedQuest = questService.getAllNotStartedQuestes();
+        List<Quest> notStartedQuest = questService.getAllNotStartedQuestes();
         model.addAttribute("knight", knight); //do tego knights sie odwołujemy w modelu jakodo zmienn
         model.addAttribute("notstartedquests", notStartedQuest); //do tego knights sie odwołujemy w modelu jakodo zmienn
         return "assignquest";
@@ -37,4 +40,13 @@ public class QuestController {
         questService.updateQuest(quest);
         return "redirect:knights";
     }
+
+    @RequestMapping("/checkquests")
+    public String checkQuests() {
+
+        knightService.getMyGold();
+
+        return "redirect:/knights";
+    }
+
 }

@@ -26,8 +26,9 @@ public class Knight {
     }
 
     public void setQuest(Quest quest) {
-        System.out.println("Setting the quest for the knight");
+        if(quest!=null){
         quest.setStarted(true);
+        }
         this.quest = quest;
     }
 

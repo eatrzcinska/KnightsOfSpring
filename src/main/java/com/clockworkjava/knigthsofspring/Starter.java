@@ -1,11 +1,9 @@
 package com.clockworkjava.knigthsofspring;
 
-import com.clockworkjava.knigthsofspring.domain.repository.InMemoryRepository;
 import com.clockworkjava.knigthsofspring.domain.repository.KnightRepository;
 import com.clockworkjava.knigthsofspring.domain.repository.QuestRepository;
 import com.clockworkjava.knigthsofspring.service.QuestService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 

@@ -3,7 +3,6 @@ package com.clockworkjava.knigthsofspring.domain.repository;
 import com.clockworkjava.knigthsofspring.domain.Quest;
 import com.clockworkjava.knigthsofspring.utils.Ids;
 import jakarta.annotation.PostConstruct;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Repository;
 

@@ -1,8 +1,6 @@
 package com.clockworkjava.knigthsofspring.domain.repository;
 
 import com.clockworkjava.knigthsofspring.domain.Knight;
-import jakarta.annotation.PostConstruct;
-import jdk.jshell.spi.ExecutionControl;
 
 import java.util.Collection;
 import java.util.Optional;

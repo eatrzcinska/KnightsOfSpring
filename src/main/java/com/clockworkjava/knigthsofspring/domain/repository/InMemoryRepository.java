@@ -3,7 +3,6 @@ package com.clockworkjava.knigthsofspring.domain.repository;
 import com.clockworkjava.knigthsofspring.domain.Knight;
 import com.clockworkjava.knigthsofspring.utils.Ids;
 
-//import javax.annotation.PostConstruct;
 import java.util.*;
 
 //@Repository rezygnujemy z dodania adnotacji w tym miejscu, robimy to w klasie Main config poprzez metodę tak żeby w

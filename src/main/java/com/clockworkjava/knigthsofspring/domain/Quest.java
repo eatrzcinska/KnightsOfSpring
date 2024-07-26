@@ -1,13 +1,16 @@
 package com.clockworkjava.knigthsofspring.domain;
 
+import java.time.LocalDateTime;
+
 public class Quest {
 
     private int id;
     private String description;
     private int reward = 100;
-    private int length = 30000;
+    protected int lengthInSec = 10;
     private boolean started = false;
     private boolean finished = false;
+    protected LocalDateTime startDate;
 
     //@Qualifier("lacelot") - to jest adnotacja która mówi którego konkretnie beana wstawic np do argumentu konstruktora
     //np public Castle(@Qualifier(value = "lacelot") Knight knight) - gdy mamy dwoch rycerzy
@@ -41,11 +44,11 @@ public class Quest {
     }
 
     public int getLength() {
-        return length;
+        return lengthInSec;
     }
 
     public void setLength(int length) {
-        this.length = length;
+        this.lengthInSec = length;
     }
 
     public boolean isStarted() {
@@ -53,15 +56,24 @@ public class Quest {
     }
 
     public void setStarted(boolean started) {
+       if(started){
+           startDate = LocalDateTime.now();
+       }
         this.started = started;
     }
 
     public boolean isFinished() {
-        return finished;
-    }
-
-    public void setFinished(boolean finished) {
-        this.finished = finished;
+        if (this.finished) {
+            return this.finished;
+        } else {
+            LocalDateTime now = LocalDateTime.now();
+            LocalDateTime timeToFinish = this.startDate.plusSeconds(this.lengthInSec);
+            boolean isAfter = now.isAfter(timeToFinish);
+            if (isAfter) {
+                this.finished = true;
+            }
+            return isAfter;
+        }
     }
 
     public int getId() {
