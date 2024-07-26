@@ -1,9 +1,15 @@
 package com.clockworkjava.knigthsofspring.domain;
 
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 public class Knight {
 
     private int id;
+
+    @NotNull
+    @Size(min=5, max=25)
     private String name;
     private int age;
     private int level;
@@ -21,7 +27,12 @@ public class Knight {
 
     public void setQuest(Quest quest) {
         System.out.println("Setting the quest for the knight");
+        quest.setStarted(true);
         this.quest = quest;
+    }
+
+    public Quest getQuest() {
+        return quest;
     }
 
     public void setName(String name) {

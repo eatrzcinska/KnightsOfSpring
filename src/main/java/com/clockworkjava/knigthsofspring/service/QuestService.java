@@ -6,8 +6,10 @@ import com.clockworkjava.knigthsofspring.domain.repository.QuestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 @Service
 public class QuestService {
@@ -26,5 +28,21 @@ public class QuestService {
         Quest randomQuest = allQuests.get(rand.nextInt(allQuests.size()));
         knightRepository.getKnight(knightName).ifPresent(knight -> knight.setQuest(randomQuest));
         questRepository.deleteQuest(randomQuest);
+    }
+
+    public List<Quest> getAllNotStartedQuestes() {
+//        List <Quest> allNotStartedQuestes = new ArrayList();
+//        for(Quest quest: questRepository.getAll()){
+//            if(!quest.isStarted()){
+//                allNotStartedQuestes.add(quest);
+//            }
+//        }
+//        return allNotStartedQuestes;
+
+        return questRepository.getAll().stream().filter(quest -> !quest.isStarted()).collect(Collectors.toList());
+    }
+
+    public void updateQuest(Quest quest) {
+        questRepository.update(quest);
     }
 }

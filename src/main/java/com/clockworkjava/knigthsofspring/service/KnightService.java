@@ -38,4 +38,8 @@ public class KnightService {
     public void addKnight(Knight knight) {
         knightRepository.addKnight(knight);
     }
+
+    public void updateKnight(Knight knight) {
+        knightRepository.updateKnight(knight.getId(), knight);
+    }
 }

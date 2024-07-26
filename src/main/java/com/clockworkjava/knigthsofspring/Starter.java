@@ -30,7 +30,7 @@ public class Starter implements CommandLineRunner {
         knightRepository.build();
         questrepository.getRandomQuest();
         questrepository.getRandomQuest();
-
+        questService.asignRandomQuest("Lancelot");
     }
 
 }

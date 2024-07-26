@@ -1,6 +1,7 @@
 package com.clockworkjava.knigthsofspring.domain.repository;
 
 import com.clockworkjava.knigthsofspring.domain.Knight;
+import com.clockworkjava.knigthsofspring.utils.Ids;
 
 //import javax.annotation.PostConstruct;
 import java.util.*;
@@ -18,7 +19,7 @@ public class InMemoryRepository implements KnightRepository {
     public void createKnight(String name, int age) {
 
         Knight newKnight = new Knight(name, age);
-        newKnight.setId(getNewId());
+        newKnight.setId(Ids.generateNewId(knightMap.keySet()));
         knightMap.put(newKnight.getId(), newKnight);
     }
 
@@ -68,7 +69,11 @@ public class InMemoryRepository implements KnightRepository {
 
     @Override
     public void addKnight(Knight knight) {
-        knight.setId(getNewId());
+        knight.setId(Ids.generateNewId(knightMap.keySet()));
         knightMap.put(knight.getId(), knight);
+    }
+    @Override
+    public void updateKnight(int id, Knight knight) {
+       knightMap.put(id, knight);
     }
 }

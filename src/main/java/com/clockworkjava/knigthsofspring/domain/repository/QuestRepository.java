@@ -3,6 +3,7 @@ package com.clockworkjava.knigthsofspring.domain.repository;
 import com.clockworkjava.knigthsofspring.domain.Quest;
 import com.clockworkjava.knigthsofspring.utils.Ids;
 import jakarta.annotation.PostConstruct;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Repository;
 
@@ -11,31 +12,31 @@ import java.util.*;
 @Repository
 public class QuestRepository {
 
-    List<Quest> questList = new ArrayList<>();
     final static Random randomNumber = new Random();
+    Map <Integer, Quest> quests = new HashMap<>();
 
     public void createQuest(String description) {
-        questList.add(new Quest(description));
+        int key = Ids.generateNewId(quests.keySet());
+        Quest quest = new Quest(key, description);
+        quests.put(key,quest);
     }
 
     public List<Quest> getAll() {
-        return questList;
+        return new ArrayList<>(quests.values());
     }
 
     public void deleteQuest(Quest quest) {
-        questList.remove(quest);
+        quests.remove(quest.getId());
     }
 
     @PostConstruct
     public void init() {
-        createQuest("Uratuj ksiezniczke");
-        createQuest("Wez udzial w turnieju");
     }
 
     @Override
     public String toString() {
         return "QuestRepository{" +
-                "questList=" + questList +
+                "questList=" + quests +
                 '}';
     }
 
@@ -54,4 +55,12 @@ public class QuestRepository {
         createQuest(desc);
     }
 
+    public void update(Quest quest) {
+        quests.put(quest.getId(), quest);
+
+    }
+
+    public Quest getQuest(Integer id) {
+       return quests.get(id);
+    }
 }
