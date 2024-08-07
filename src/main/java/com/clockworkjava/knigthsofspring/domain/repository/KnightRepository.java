@@ -21,7 +21,7 @@ public interface KnightRepository {
 
     void addKnight(Knight knight);
 
-    default void updateKnight(int id, Knight knight) {
+    default void updateKnight(int id, Knight knight) { //TODO sprawdzic o co tu chodziło z tym defaultem
         throw new RuntimeException();
     }
 }

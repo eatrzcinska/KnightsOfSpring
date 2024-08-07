@@ -1,18 +1,28 @@
 package com.clockworkjava.knigthsofspring.domain;
 
 
+import jakarta.persistence.*;
+import org.hibernate.validator.constraints.Range;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+@Entity
 public class Knight {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     @NotNull
-    @Size(min=5, max=25)
+    @Size(min=2, max=40,message = "Imie rycerza musi miec miedzy 2, a 40 znakow")
     private String name;
+    @NotNull
+    @Range(min=18, max=60, message = "Rycerz musi miec conajmniej 18 lat, a nie wiecej niz 60")
     private int age;
     private int level;
+
+    @OneToOne
     private Quest quest;
 
     public Knight() {

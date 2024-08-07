@@ -1,9 +1,14 @@
 package com.clockworkjava.knigthsofspring.domain;
 
+import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 
+@Entity
 public class Quest {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String description;
     private int reward = 100;
@@ -18,9 +23,12 @@ public class Quest {
     //a tam gdzie te beany opisujemy czyli w klasie @configuration można też np użyć @Bean(name = "lancelot")
     //i pod spodem @Primary co bedzie oznaczalo, ze to wezmie domyslnie
 
-   public Quest(int id, String description){
+   public Quest(String description){
         this.description = description;
         this.id = id;
+    }
+
+    public Quest() {
     }
 
     public String getDescription() {
